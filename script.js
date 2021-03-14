@@ -4,17 +4,21 @@ const MASK_CHARACTER = "_";
  * Eine Klasse zur Darstellung einer Tastatur
  */
 class Keyboard {
-    constructor(textName) {
+    constructor(elementID) {
         this._rows = [
             "QWERTZUIOP",
             "ASDFGHJKL",
             "YXCVBNM"
         ];
-        this._textName = textName;
+        this._elementID = elementID;
+    }
+
+    get element() {
+        return document.getElementById(this._elementID);
     }
 
     renderHtml() {
-        var result = '<div class="keyboard" onclick="onKeyClick(window.event,' + this._textName + ')"> ';
+        var result = '<div class="keyboard"> ';
         for (var i = 0; i < this._rows.length; i++) {
             result += "<div class='kbrow'>";
             for (var j = 0; j < this._rows[i].length; j++) {
@@ -25,23 +29,51 @@ class Keyboard {
         result += "</div>";
         return result;
     }
+
+    render() {
+        this.element.innerHTML = this.renderHtml();
+    }
+
+    setKeyColor(key, color) {
+        document.getElementById(key).style.backgroundColor = color;
+    }
 }
 
 /**
  * Eine Klasse für den zur erratenden Text
  */
 class HangmanText {
-    constructor(element) {
+
+    constructor(elementID = false) {
         this._text = "";
         this._guessed = "";
-        this.connect(element);
+        this.connect(elementID);
     }
 
     get text() {
         return this._text;
     }
+
     set text(text) {
         this._text = text;
+        this.reset();
+    }
+
+    get element() {
+        return document.getElementById(this._elementID);
+    }
+
+    get guessed() {
+        return this._guessed;
+    }
+
+    connect(elementID) {
+        this._elementID = elementID;
+    }
+
+    reset() {
+        this._tries = 0;
+        this._fails = 0;
         for (var i = 0; i < this._text.length; i++) {
             if (this._text[i] === " ") {
                 this._guessed += " ";
@@ -49,35 +81,48 @@ class HangmanText {
                 this._guessed += MASK_CHARACTER;
             }
         }
-        if (this._element) {
-            this._element.innerText = this._guessed;
+        if (this._elementID) {
+            this.element.innerText = this._guessed;
         }
     }
 
-    get guessed() {
-        return this._guessed;
+    isSolved() {
+        return this._guessed.indexOf(MASK_CHARACTER) < 0;
     }
 
-    connect(element) {
-        this._element = element;
+    registerKeyboard(keyboard) {
+        this._keyboard = keyboard;
+        keyboard.element.addEventListener("click", ev => this.onClick(ev));
+    }
+
+    onClick(ev) {
+        if (ev.target.id) {
+            this.guess(ev.target.id);
+        }
     }
 
     guess(char) {
         var check = char.toUpperCase();
+        var found = false;
+        this._tries++;
         for (var i = 0; i < this._text.length; i++) {
             if (this._text[i].toUpperCase() == check) {
                 this._guessed = this._guessed.substring(0, i) + this._text[i] +
                                 this._guessed.substring(i + 1);
+                found = true;
             }
         }
-        if (this._element) {
-            this._element.innerText = this._guessed;
+        if (! found) {
+            this._fails++;
+            if (this._keyboard) {
+                this._keyboard.setKeyColor(check, "#FFC0C0");
+            }
         }
-    }
-}
-
-function onKeyClick(ev, ht) {
-    if (ev.target.id) {
-        ht.guess(ev.target.id);
+        if (this._elementID) {            
+            this.element.innerText = this._guessed;
+        }
+        if (this.isSolved()) {
+            alert("Das Wort wurde mit " + this._fails + " Fehlversuchen gelöst!");
+        }
     }
 }

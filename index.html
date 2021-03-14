@@ -8,16 +8,17 @@
   </head>
   <body>
       <div id="gamearea">
-          <p id="hangmantext" class="hangmantext">Das ist ein Test</p>
+          <p id="hangmantext" class="hangmantext"></p>
       </div>
       <div id="keyboard"></div>
     <script src="script.js"></script>
+    <script src="words.js"></script>
     <script>
-        var kb = new Keyboard("ht");
-        document.getElementById("keyboard").innerHTML=kb.renderHtml();
-
-        var ht = new HangmanText(document.getElementById("hangmantext"));
-        ht.text = "Das ist ein Test";
+        var ht = new HangmanText("hangmantext");
+        ht.text = getRandomWord();
+        var kb = new Keyboard("keyboard");
+        kb.render();
+        ht.registerKeyboard(kb);
     </script>
   </body>
 </html>
