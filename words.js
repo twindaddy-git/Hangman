@@ -1,3 +1,8 @@
+/**
+ * Eine Wortliste für das Hangman-Spiel
+ * Da die Kinder keinen Server zu Verfügung haben werden, setzen 
+ * wir die im ersten Schritt einfach als statisches Array um.
+ */
 var lotOfWords = 
 [
 "Abaenderungsantrag",

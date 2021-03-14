@@ -1,3 +1,6 @@
+/**
+ * Ein Hangman-Spiel
+ */
 const MASK_CHARACTER = "_";
 
 /**
