@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <div id="keyboard"></div>
+    <script src="script.js"></script>
+    <script>
+        var kb = new Keyboard();
+        document.getElementById("keyboard").innerHTML=kb.renderHtml();
+    </script>
+  </body>
+</html>
