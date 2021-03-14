@@ -7,11 +7,17 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+      <div id="gamearea">
+          <p id="hangmantext" class="hangmantext">Das ist ein Test</p>
+      </div>
       <div id="keyboard"></div>
     <script src="script.js"></script>
     <script>
-        var kb = new Keyboard();
+        var kb = new Keyboard("ht");
         document.getElementById("keyboard").innerHTML=kb.renderHtml();
+
+        var ht = new HangmanText(document.getElementById("hangmantext"));
+        ht.text = "Das ist ein Test";
     </script>
   </body>
 </html>
