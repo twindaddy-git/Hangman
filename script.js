@@ -38,14 +38,14 @@ class Keyboard {
      * Erstellt eine HTML-Repräsentation einer kleinen Tastatur
      * @returns {string} Ein Div-Tag mit der Visualisierung der Tastatur
      */
-    renderHtml() {
-        var result = '<div class="keyboard"> ';
+     renderHtml() {
+        var result = '<div class="keyboard">';
         for (var i = 0; i < this._rows.length; i++) {
-            result += "<div class='kbrow'>";
+            result += '<table class="keyboard"><tr class="kbrow">';
             for (var j = 0; j < this._rows[i].length; j++) {
-                result += '<span id="' + this._rows[i][j] + '">' + this._rows[i][j] + '</span>';
+                result += '<td id="' + this._rows[i][j] + '">' + this._rows[i][j] + '</td>';
             }
-            result += "</div>";
+            result += "</table></tr>";
         }
         result += "</div>";
         return result;
