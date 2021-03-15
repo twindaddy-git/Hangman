@@ -15,10 +15,9 @@
     <script src="words.js"></script>
     <script>
         var ht = new HangmanText("hangmantext");
-        ht.text = getRandomWord();
         var kb = new Keyboard("keyboard");
-        kb.render();
-        ht.registerKeyboard(kb);
+        ht.keyboard = kb;
+        ht.text = getRandomWord();
     </script>
   </body>
 </html>

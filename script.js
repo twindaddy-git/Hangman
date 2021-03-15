@@ -1,7 +1,12 @@
 /**
  * Ein Hangman-Spiel
+ * @version 0.1
+ * @author Markus Steffl
  */
 const MASK_CHARACTER = "_";
+const SHOW_GUESSES_DEFAULT = true;
+const COLOR_SUCCESS = "#C0FFC0";
+const COLOR_FAIL = "#FFC0C0";
 
 /**
  * Eine Klasse zur Darstellung einer On-Screen-Tastatur
@@ -71,7 +76,9 @@ class HangmanText {
     constructor(elementID = false) {
         this._text = "";
         this._guessed = "";
+        this._keyboard = false;
         this.connect(elementID);
+        this.showGuesses = SHOW_GUESSES_DEFAULT;
     }
 
     /**
@@ -82,9 +89,21 @@ class HangmanText {
         return this._text;
     }
 
-    set text(text) {
-        this._text = text;
+    set text(newText) {
+        this._text = newText;
         this.reset();
+    }
+
+    /**
+     * Einstellung, ob die bisher geratenen Versuche angezeigt werden sollen
+     * @type {boolean}
+     */
+    get showGuesses() {
+        return this._showGuesses;
+    }
+
+    set showGuesses(newValue) {
+        this._showGuesses = newValue;
     }
 
     /**
@@ -128,6 +147,9 @@ class HangmanText {
         if (this._elementID) {
             this.element.innerText = this._guessed;
         }
+        if (this._keyboard) {
+            this._keyboard.render();
+        }
     }
 
     /**
@@ -141,11 +163,15 @@ class HangmanText {
     /**
      * Verbindet den Ratetext mit einen On-Screen-Keyboard, das die 
      * Eingaben für die geratenen Buchstaben liefert
-     * @param {Keyboard} keyboard - Die Instanz einer On-Screen-Tastatur
+     * @type {Keyboard}
      */
-    registerKeyboard(keyboard) {
-        this._keyboard = keyboard;
-        keyboard.element.addEventListener("click", ev => this.onClick(ev));
+    get keyboard() {
+        return this._keyboard;
+    }
+    
+    set keyboard(newKeyboard) {
+        this._keyboard = newKeyboard;
+        newKeyboard.element.addEventListener("click", ev => this.onClick(ev));
     }
 
     /**
@@ -175,9 +201,9 @@ class HangmanText {
         }
         if (!found) {
             this._fails++;
-            if (this._keyboard) {
-                this._keyboard.setKeyColor(check, "#FFC0C0");
-            }
+        }
+        if (this._keyboard && this.showGuesses) {
+            this._keyboard.setKeyColor(check, found ? COLOR_SUCCESS : COLOR_FAIL);
         }
         if (this._elementID) {
             this.element.innerText = this._guessed;
