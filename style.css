@@ -10,7 +10,7 @@ table.keyboard {
     width: 7vw;
     height: 7vw;
     font-family: 'Consolas', monospace;
-    font-size: 3vw;
+    font-size: 2.5vw;
     text-align: center;
     border-width: 1pt;
     border-style: solid;
@@ -24,7 +24,7 @@ table.keyboard {
 
 p.hangmantext {
     font-family: 'Consolas', monospace;
-    font-size: 4vw;
+    font-size: 3vw;
     width: 100%;
     text-align: center;
     letter-spacing: 0.5em; 
