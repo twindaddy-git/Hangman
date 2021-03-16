@@ -12358,7 +12358,7 @@ var lotOfWords =
 "Kurdenaufstand",
 "Kurdirektoren",
 "Kurfuerstendamm",
-"Kurfuestentag",
+"Kurfuerstentag",
 "Kurierbusiness",
 "Kurierdienste",
 "Kuriosentaetensammler",

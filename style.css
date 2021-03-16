@@ -1,4 +1,10 @@
+/**
+ * Stylesheet für das Hangmanspiel
+ */
+
+/* Der DIV-Tag mit der gesamten On-Screen-Tastatur */
 div.keyboard {
+    padding-top: 1em;
     width: 100%;
 }
 
@@ -23,6 +29,7 @@ table.keyboard {
 }
 
 p.hangmantext {
+    padding-top: 1em;
     font-family: 'Consolas', monospace;
     font-size: 3vw;
     width: 100%;
