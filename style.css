@@ -5,13 +5,16 @@
 /* Der DIV-Tag mit der gesamten On-Screen-Tastatur */
 div.keyboard {
     padding-top: 1em;
+    padding-bottom: 5vw;
     width: 100%;
 }
 
+/* Eine Tastaturzeile ist eine einzeilige Tabelle */
 table.keyboard {
     margin: 0 auto;
 }
 
+/* Eine einzelne Taste */
 .keyboard td {
     width: 7vw;
     height: 7vw;
@@ -24,10 +27,30 @@ table.keyboard {
     cursor: default;
 }
 
-.kbrow span, td:hover {
+div.button {
+    background-color:#F0F0F0;
+    position: relative;
+    margin: 0 auto;
+    width: 15vw;
+    line-height: 7vw;
+    font-family: 'Consolas', monospace;
+    font-size: 2.5vw;
+    text-align: center;
+    border-width: 1pt;
+    border-style: solid;
+    cursor: default;
+}
+
+.keyboard td:hover {
     background-color: aliceblue;
 }
 
+div.button:hover {
+    background-color: aliceblue;
+}
+
+/* Darstellung des zu ratenden Texts. Wichtig ist hier das 
+   letter-spacing, zur Abgrenzung der einzelnen Zeichen */
 p.hangmantext {
     padding-top: 1em;
     font-family: 'Consolas', monospace;

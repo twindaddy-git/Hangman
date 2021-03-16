@@ -137,6 +137,7 @@ class HangmanText {
     reset() {
         this._tries = 0;
         this._fails = 0;
+        this._guessed = "";
         for (var i = 0; i < this._text.length; i++) {
             if (this._text[i] === " ") {
                 this._guessed += " ";

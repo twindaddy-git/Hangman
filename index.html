@@ -11,9 +11,13 @@
           <p id="hangmantext" class="hangmantext"></p>
       </div>
       <div id="keyboard"></div>
+      <div><div class="button" id="reset" onclick="resetHangman();">Reset</div></div>
     <script src="script.js"></script>
     <script src="words.js"></script>
     <script>
+        function resetHangman() {
+          ht.text = getRandomWord();
+        }
         var ht = new HangmanText("hangmantext");
         var kb = new Keyboard("keyboard");
         ht.keyboard = kb;
