@@ -17314,7 +17314,7 @@ var lotOfWords =
 "Schlussstrich",
 "Schlussverkaeufe",
 "Schlussverkauf",
-"Schlussworten",
+"Schlussworte",
 "Schmackhaftigkeit",
 "Schmaelerungen",
 "Schmalfilmkameras",
