@@ -190,6 +190,9 @@ class HangmanText {
      * @param {string} char - Das zu prüfende Zeichen
      */
     guess(char) {
+        if (this.isSolved()) {
+            return;
+        }
         var check = char.toUpperCase();
         var found = false;
         this._tries++;
@@ -210,7 +213,9 @@ class HangmanText {
             this.element.innerText = this._guessed;
         }
         if (this.isSolved()) {
-            alert("Das Wort wurde mit " + this._fails + " Fehlversuchen gelöst!");
+            var that = this;
+            window.setTimeout(function () {
+            alert("Das Wort wurde mit " + that._fails + " Fehlversuchen gelöst!") }, 300);
         }
     }
 }
