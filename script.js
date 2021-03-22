@@ -215,7 +215,7 @@ class HangmanText {
         if (this.isSolved()) {
             var that = this;
             window.setTimeout(function () {
-            alert("Das Wort wurde mit " + that._fails + " Fehlversuchen gelöst!") }, 300);
+                alert("Das Wort wurde mit " + that._fails + " Fehlversuchen gelöst!") }, 300);
         }
     }
 }
